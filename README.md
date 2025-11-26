@@ -4,8 +4,10 @@ Hero section con sfondo animato blu navy e video 3D interattivo che segue il mou
 
 ## 📌 Info Progetto
 
-- **Progetto Locale:** `/Users/brunolorenzon/CascadeProjects/hero-section/`
+- **Repository:** https://github.com/brukandy/hero-section
+- **Live Demo:** https://brukandy.github.io/hero-section/
 - **Account GitHub:** brukandy
+- **Progetto Locale:** `/Users/brunolorenzon/CascadeProjects/hero-section/`
 - **Stile:** Mindvalley-inspired con effetti 3D
 
 ## ✨ Caratteristiche
