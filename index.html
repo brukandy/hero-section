@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
     <!-- Sfondo animato -->
@@ -137,43 +137,6 @@
     
     adjustTypeformSize();
     window.addEventListener('resize', adjustTypeformSize);
-    
-    // Close Typeform on overlay click - use MutationObserver to detect when Typeform opens
-    const observer = new MutationObserver(function(mutations) {
-        const wrapper = document.querySelector('.tf-v1-popup-wrapper');
-        if (wrapper && !wrapper.hasAttribute('data-click-listener')) {
-            wrapper.setAttribute('data-click-listener', 'true');
-            
-            wrapper.addEventListener('click', function(e) {
-                // Click solo sull'overlay, non sul contenuto
-                if (e.target === wrapper) {
-                    const closeButton = document.querySelector('.tf-v1-close');
-                    if (closeButton) {
-                        closeButton.click();
-                    }
-                }
-            });
-        }
-    });
-    
-    // Osserva il body per quando Typeform viene aggiunto
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-    
-    // Prevent video from being triggered by clicks outside play button
-    const playButton = document.getElementById('playButton');
-    const videoWrapper = document.getElementById('videoWrapper');
-    
-    if (videoWrapper && playButton) {
-        videoWrapper.addEventListener('click', function(e) {
-            // Only allow play button to trigger video
-            if (!playButton.contains(e.target)) {
-                e.stopPropagation();
-            }
-        });
-    }
     
     // Remove Typeform padding by injecting CSS into iframe
     window.addEventListener('message', function(e) {

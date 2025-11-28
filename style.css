@@ -102,12 +102,6 @@ body {
     text-align: center;
 }
 
-/* Hero Video */
-.hero-video {
-    position: relative;
-    z-index: 1;
-}
-
 /* CTA Buttons */
 .cta-buttons {
     display: flex;
@@ -116,8 +110,6 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    position: relative;
-    z-index: 10;
 }
 
 .btn {
@@ -131,8 +123,6 @@ body {
     cursor: pointer;
     border: none;
     font-family: 'Inter', sans-serif;
-    position: relative;
-    z-index: 10;
 }
 
 .btn-primary {
@@ -439,31 +429,6 @@ body {
 .tf-v1-popup-wrapper {
     padding: 20px !important;
     margin: 0 !important;
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-}
-
-/* Typeform overlay background - clickable to close */
-.tf-v1-popup-wrapper::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: -1;
-    cursor: pointer;
-    user-select: none !important;
-}
-
-/* Make popup content not clickable through */
-.tf-v1-popup {
-    cursor: default !important;
-    position: relative;
-    z-index: 10;
 }
 
 .tf-v1-popup-close {
