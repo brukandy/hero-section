@@ -138,21 +138,32 @@
     adjustTypeformSize();
     window.addEventListener('resize', adjustTypeformSize);
     
-    // Close Typeform on background click (all devices)
+    // Close Typeform on overlay/background click (all devices)
     document.addEventListener('click', function(e) {
-        const typeformWrapper = document.querySelector('.tf-v1-popup-wrapper');
-        const typeformContainer = document.querySelector('.tf-v1-popup');
-        
-        if (typeformWrapper && typeformWrapper.style.display !== 'none') {
-            // Click on background (not on popup content)
-            if (e.target === typeformWrapper || e.target.classList.contains('tf-v1')) {
-                const closeButton = document.querySelector('.tf-v1-close');
-                if (closeButton) {
-                    closeButton.click();
-                }
+        // Target the dark overlay background
+        if (e.target.classList.contains('tf-v1-popup-wrapper') || 
+            e.target.classList.contains('tf-v1-sidetab-wrapper') ||
+            (e.target.hasAttribute('data-testid') && e.target.getAttribute('data-testid') === 'popup-overlay')) {
+            
+            const closeButton = document.querySelector('.tf-v1-close') || 
+                               document.querySelector('[data-testid="close-button"]');
+            if (closeButton) {
+                closeButton.click();
             }
         }
     });
+    
+    // Alternative: Listen for Typeform-specific overlay
+    setTimeout(() => {
+        const overlay = document.querySelector('[data-testid="popup-overlay"]');
+        if (overlay) {
+            overlay.style.cursor = 'pointer';
+            overlay.addEventListener('click', function() {
+                const closeBtn = document.querySelector('.tf-v1-close');
+                if (closeBtn) closeBtn.click();
+            });
+        }
+    }, 1000);
     
     // Remove Typeform padding by injecting CSS into iframe
     window.addEventListener('message', function(e) {

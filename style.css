@@ -429,6 +429,12 @@ body {
 .tf-v1-popup-wrapper {
     padding: 20px !important;
     margin: 0 !important;
+    cursor: pointer !important; /* Make overlay clickable */
+}
+
+/* Make popup content not clickable through */
+.tf-v1-popup {
+    cursor: default !important;
 }
 
 .tf-v1-popup-close {
