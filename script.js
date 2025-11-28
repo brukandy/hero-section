@@ -97,24 +97,38 @@ void main() {
 })();
 
 // ========================================
-// PLAY VIDEO AL CLICK
+// PLAY VIDEO AL CLICK CON VIMEO API
 // ========================================
 document.addEventListener('DOMContentLoaded', function() {
     const playButton = document.getElementById('playButton');
     const videoThumbnail = document.getElementById('videoThumbnail');
-    const vimeoPlayer = document.getElementById('vimeoPlayer');
+    const vimeoIframe = document.getElementById('vimeoPlayer');
     
-    if (playButton && videoThumbnail && vimeoPlayer) {
+    if (playButton && videoThumbnail && vimeoIframe) {
+        // Inizializza Vimeo Player
+        const player = new Vimeo.Player(vimeoIframe);
+        
         playButton.addEventListener('click', function(e) {
-            e.stopPropagation(); // Previeni propagazione
-            e.preventDefault(); // Previeni default
+            e.stopPropagation();
+            e.preventDefault();
             
             // Nascondi thumbnail e play button
             videoThumbnail.classList.add('hidden');
             playButton.classList.add('hidden');
             
-            // Mostra video e avvia autoplay
-            vimeoPlayer.style.display = 'block';
+            // Mostra video
+            vimeoIframe.style.display = 'block';
+            
+            // Unmute e play con API
+            player.setVolume(1).then(function() {
+                return player.play();
+            }).catch(function(error) {
+                console.log('Errore play:', error);
+                // Fallback: prova con muted se non funziona
+                player.setVolume(0).then(function() {
+                    return player.play();
+                });
+            });
         });
     }
 });
