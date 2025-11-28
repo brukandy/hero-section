@@ -105,7 +105,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const vimeoPlayer = document.getElementById('vimeoPlayer');
     
     if (playButton && videoThumbnail && vimeoPlayer) {
-        playButton.addEventListener('click', function() {
+        playButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // Previeni propagazione
+            e.preventDefault(); // Previeni default
+            
             // Nascondi thumbnail e play button
             videoThumbnail.classList.add('hidden');
             playButton.classList.add('hidden');

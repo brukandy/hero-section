@@ -102,6 +102,12 @@ body {
     text-align: center;
 }
 
+/* Hero Video */
+.hero-video {
+    position: relative;
+    z-index: 1;
+}
+
 /* CTA Buttons */
 .cta-buttons {
     display: flex;
