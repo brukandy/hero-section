@@ -163,12 +163,28 @@
     });
     
     // Prevent CTA button from triggering video play
-    const ctaButton = document.querySelector('[data-tf-popup]');
-    if (ctaButton) {
-        ctaButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
+    setTimeout(() => {
+        const ctaButton = document.querySelector('[data-tf-popup]');
+        if (ctaButton) {
+            ctaButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+            }, true); // Use capture phase
+        }
+        
+        // Also prevent video container from triggering on CTA area
+        const videoContainer = document.getElementById('videoContainer');
+        const ctaButtons = document.querySelector('.cta-buttons');
+        if (videoContainer && ctaButtons) {
+            videoContainer.addEventListener('click', function(e) {
+                // Check if click is on CTA area
+                if (ctaButtons.contains(e.target)) {
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                }
+            }, true);
+        }
+    }, 100);
     
     // Remove Typeform padding by injecting CSS into iframe
     window.addEventListener('message', function(e) {
