@@ -127,7 +127,7 @@
         const isPortrait = window.innerHeight > window.innerWidth;
         
         if (isMobile && isPortrait) {
-            button.setAttribute('data-tf-size', '85'); // 85% on mobile portrait
+            button.setAttribute('data-tf-size', '75'); // 75% on mobile portrait
         } else if (isMobile && !isPortrait) {
             button.setAttribute('data-tf-size', '100'); // Full screen on mobile landscape
         } else {
@@ -137,6 +137,22 @@
     
     adjustTypeformSize();
     window.addEventListener('resize', adjustTypeformSize);
+    
+    // Close Typeform on background click (all devices)
+    document.addEventListener('click', function(e) {
+        const typeformWrapper = document.querySelector('.tf-v1-popup-wrapper');
+        const typeformContainer = document.querySelector('.tf-v1-popup');
+        
+        if (typeformWrapper && typeformWrapper.style.display !== 'none') {
+            // Click on background (not on popup content)
+            if (e.target === typeformWrapper || e.target.classList.contains('tf-v1')) {
+                const closeButton = document.querySelector('.tf-v1-close');
+                if (closeButton) {
+                    closeButton.click();
+                }
+            }
+        }
+    });
     
     // Remove Typeform padding by injecting CSS into iframe
     window.addEventListener('message', function(e) {
