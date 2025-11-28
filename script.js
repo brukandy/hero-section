@@ -28,8 +28,8 @@ void main() {
   float p1 = cos(uv.x * d) * 0.5 + 0.5;
   float p2 = cos(uv.y * a) * 0.5 + 0.5;
   
-  // Colore blu navy con variazioni
-  vec3 col = vec3(0.09, 0.15, 0.35) * (0.7 + p1 * 0.5 + p2 * 0.3);
+  // Colore #132E55 con variazioni
+  vec3 col = vec3(0.0745, 0.1804, 0.3333) * (0.7 + p1 * 0.5 + p2 * 0.3);
   
   gl_FragColor = vec4(col, 1.0);
 }`;
