@@ -1,0 +1,39 @@
+<!-- CODICE PER ELEMENTOR - WIDGET HTML -->
+
+<!-- Vimeo Player API -->
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<!-- Iframe Hero Section -->
+<iframe 
+    src="https://brukandy.github.io/hero-section/" 
+    width="100%" 
+    height="800" 
+    frameborder="0"
+    scrolling="no"
+    allow="autoplay; fullscreen; picture-in-picture"
+    style="border: none; display: block; margin: 0; padding: 0; overflow: hidden;">
+</iframe>
+
+<script>
+// Auto-resize iframe based on content
+window.addEventListener('message', function(e) {
+    if (e.data.hasOwnProperty('heroHeight')) {
+        var iframe = document.querySelector('iframe[src*="hero-section"]');
+        if (iframe) {
+            iframe.style.height = e.data.heroHeight + 'px';
+        }
+    }
+});
+</script>
+
+<style>
+/* Remove Elementor padding/margins */
+.elementor-widget-html {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.elementor-widget-container {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+</style>
