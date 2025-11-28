@@ -449,25 +449,34 @@ iframe[src*="typeform.com"] {
 
 /* Typeform Mobile Override */
 @media (max-width: 768px) {
-    /* Override Typeform size on mobile */
+    /* Override Typeform size on mobile - FULL HEIGHT */
     [data-tf-popup] {
-        --tf-popup-width: 90% !important;
-        --tf-popup-height: 80% !important;
+        --tf-popup-width: 100% !important;
+        --tf-popup-height: 100% !important;
     }
     
     /* Target Typeform iframe directly */
     iframe[src*="typeform.com"] {
-        max-width: 90vw !important;
-        max-height: 80vh !important;
-        width: 90vw !important;
-        height: 80vh !important;
+        max-width: 100vw !important;
+        max-height: 100vh !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        border-radius: 0 !important;
     }
     
     .tf-v1-popup {
-        padding: 16px !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
     }
     
     .tf-v1-popup-wrapper {
-        padding: 16px !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
+    
+    .tf-v1-popup-close {
+        top: 16px !important;
+        right: 16px !important;
+        z-index: 99999 !important;
     }
 }
