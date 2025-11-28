@@ -447,20 +447,20 @@ iframe[src*="typeform.com"] {
     border-radius: 12px !important;
 }
 
-/* Typeform Mobile Portrait - Much Smaller */
+/* Typeform Mobile Portrait - Fixed Height for Elementor */
 @media (max-width: 768px) and (orientation: portrait) {
-    /* Much smaller popup on mobile portrait for Elementor */
+    /* Fixed dimensions for Elementor iframe (1350px height) */
     [data-tf-popup] {
-        --tf-popup-width: 85% !important;
-        --tf-popup-height: 60% !important;
+        --tf-popup-width: 90% !important;
+        --tf-popup-height: 500px !important;
     }
     
     /* Target Typeform iframe directly */
     iframe[src*="typeform.com"] {
-        max-width: 85vw !important;
-        max-height: 60vh !important;
-        width: 85vw !important;
-        height: 60vh !important;
+        max-width: 90vw !important;
+        max-height: 500px !important;
+        width: 90vw !important;
+        height: 500px !important;
         border-radius: 16px !important;
     }
     
