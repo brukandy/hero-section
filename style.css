@@ -433,6 +433,10 @@ body {
 .tf-v1-popup-wrapper {
     padding: 20px !important;
     margin: 0 !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
 }
 
 /* Typeform overlay background - clickable to close */
@@ -446,6 +450,7 @@ body {
     background: rgba(0, 0, 0, 0.7);
     z-index: -1;
     cursor: pointer;
+    user-select: none !important;
 }
 
 /* Make popup content not clickable through */
