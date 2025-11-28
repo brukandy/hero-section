@@ -120,13 +120,18 @@
     <script src="script.js"></script>
     <script src="//embed.typeform.com/next/embed.js"></script>
     <script>
-    // Adjust Typeform size based on screen size
+    // Adjust Typeform size based on screen size and orientation
     function adjustTypeformSize() {
         const button = document.querySelector('[data-tf-popup]');
-        if (window.innerWidth <= 768) {
-            button.setAttribute('data-tf-size', '100'); // Full screen on mobile
+        const isMobile = window.innerWidth <= 768;
+        const isPortrait = window.innerHeight > window.innerWidth;
+        
+        if (isMobile && isPortrait) {
+            button.setAttribute('data-tf-size', '85'); // 85% on mobile portrait
+        } else if (isMobile && !isPortrait) {
+            button.setAttribute('data-tf-size', '100'); // Full screen on mobile landscape
         } else {
-            button.setAttribute('data-tf-size', '50');
+            button.setAttribute('data-tf-size', '50'); // 50% on desktop
         }
     }
     
