@@ -132,6 +132,28 @@
     
     adjustTypeformSize();
     window.addEventListener('resize', adjustTypeformSize);
+    
+    // Remove Typeform padding by injecting CSS into iframe
+    window.addEventListener('message', function(e) {
+        if (e.data.type === 'form-ready') {
+            setTimeout(() => {
+                const typeformIframe = document.querySelector('iframe[src*="typeform.com"]');
+                if (typeformIframe) {
+                    try {
+                        const iframeDoc = typeformIframe.contentDocument || typeformIframe.contentWindow.document;
+                        const style = iframeDoc.createElement('style');
+                        style.textContent = `
+                            body { padding: 0 !important; margin: 0 !important; }
+                            .tf-v1-content { padding: 20px !important; }
+                        `;
+                        iframeDoc.head.appendChild(style);
+                    } catch(e) {
+                        console.log('Cannot access iframe due to CORS');
+                    }
+                }
+            }, 500);
+        }
+    });
     </script>
 </body>
 </html>

@@ -420,6 +420,33 @@ body {
     }
 }
 
+/* Typeform Custom Styling */
+/* Remove excessive padding from Typeform popup */
+.tf-v1-popup {
+    padding: 0 !important;
+}
+
+.tf-v1-popup-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.tf-v1-popup-close {
+    top: 12px !important;
+    right: 12px !important;
+}
+
+/* Typeform iframe container */
+.tf-v1-iframe-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Target Typeform iframe directly */
+iframe[src*="typeform.com"] {
+    border-radius: 12px !important;
+}
+
 /* Typeform Mobile Override */
 @media (max-width: 768px) {
     /* Override Typeform size on mobile */
@@ -434,5 +461,9 @@ body {
         max-height: 80vh !important;
         width: 90vw !important;
         height: 80vh !important;
+    }
+    
+    .tf-v1-popup {
+        padding: 0 !important;
     }
 }
