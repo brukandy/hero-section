@@ -119,5 +119,19 @@
 
     <script src="script.js"></script>
     <script src="//embed.typeform.com/next/embed.js"></script>
+    <script>
+    // Adjust Typeform size based on screen size
+    function adjustTypeformSize() {
+        const button = document.querySelector('[data-tf-popup]');
+        if (window.innerWidth <= 768) {
+            button.setAttribute('data-tf-size', '90');
+        } else {
+            button.setAttribute('data-tf-size', '50');
+        }
+    }
+    
+    adjustTypeformSize();
+    window.addEventListener('resize', adjustTypeformSize);
+    </script>
 </body>
 </html>

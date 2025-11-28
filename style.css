@@ -419,3 +419,20 @@ body {
         transform: rotateY(0deg) rotateX(0deg);
     }
 }
+
+/* Typeform Mobile Override */
+@media (max-width: 768px) {
+    /* Override Typeform size on mobile */
+    [data-tf-popup] {
+        --tf-popup-width: 90% !important;
+        --tf-popup-height: 80% !important;
+    }
+    
+    /* Target Typeform iframe directly */
+    iframe[src*="typeform.com"] {
+        max-width: 90vw !important;
+        max-height: 80vh !important;
+        width: 90vw !important;
+        height: 80vh !important;
+    }
+}
