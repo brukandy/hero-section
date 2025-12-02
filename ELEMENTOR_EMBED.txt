@@ -48,6 +48,12 @@ window.addEventListener('message', function(e) {
         button.id = 'tf-trigger-' + Date.now();
         document.body.appendChild(button);
         
+        // Force Typeform to reinitialize and scan for new buttons
+        if (window.tf && window.tf.load) {
+            console.log('Reloading Typeform to detect new button');
+            window.tf.load();
+        }
+        
         // Wait for Typeform to initialize, then trigger
         setTimeout(function() {
             console.log('Clicking button to open Typeform');
@@ -59,7 +65,7 @@ window.addEventListener('message', function(e) {
                     document.body.removeChild(button);
                 }
             }, 2000);
-        }, 100);
+        }, 200);
     }
 });
 </script>
