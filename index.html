@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
     <!-- Sfondo animato -->
@@ -61,7 +61,7 @@
 
             <!-- CTA Button -->
             <div class="cta-buttons">
-                <button data-tf-popup="mGllVklt" data-tf-opacity="100" data-tf-iframe-props="title=Conosciamoci meglio" data-tf-transitive-search-params data-tf-medium="snippet" class="btn btn-primary">Conosciamoci meglio</button>
+                <button onclick="openTypeformInParent(event)" class="btn btn-primary">Conosciamoci meglio</button>
             </div>
             
             <!-- CTA Description -->
@@ -115,53 +115,16 @@
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="script.js?v=7"></script>
     <script>
-    // IMPORTANT: Set Typeform size BEFORE Typeform script loads
-    function adjustTypeformSize() {
-        const button = document.querySelector('[data-tf-popup]');
-        if (!button) return;
+    // Open Typeform in parent window (outside iframe)
+    function openTypeformInParent(event) {
+        event.preventDefault();
         
-        const isMobile = window.innerWidth <= 768;
-        const isPortrait = window.innerHeight > window.innerWidth;
-        
-        if (isMobile && isPortrait) {
-            // Full screen for better mobile UX and centering
-            button.setAttribute('data-tf-size', '100'); // Full screen on mobile portrait
-        } else if (isMobile && !isPortrait) {
-            button.setAttribute('data-tf-size', '100'); // Full screen on mobile landscape
-        } else {
-            button.setAttribute('data-tf-size', '50'); // 50% on desktop
-        }
+        // Send message to parent window to open Typeform
+        window.parent.postMessage({
+            type: 'openTypeform',
+            formId: 'mGllVklt'
+        }, '*');
     }
-    
-    // Execute immediately and on DOM ready
-    adjustTypeformSize();
-    document.addEventListener('DOMContentLoaded', adjustTypeformSize);
-    window.addEventListener('resize', adjustTypeformSize);
-    </script>
-    <script src="//embed.typeform.com/next/embed.js"></script>
-    <script>
-    
-    // Remove Typeform padding by injecting CSS into iframe
-    window.addEventListener('message', function(e) {
-        if (e.data.type === 'form-ready') {
-            setTimeout(() => {
-                const typeformIframe = document.querySelector('iframe[src*="typeform.com"]');
-                if (typeformIframe) {
-                    try {
-                        const iframeDoc = typeformIframe.contentDocument || typeformIframe.contentWindow.document;
-                        const style = iframeDoc.createElement('style');
-                        style.textContent = `
-                            body { padding: 0 !important; margin: 0 !important; }
-                            .tf-v1-content { padding: 20px !important; }
-                        `;
-                        iframeDoc.head.appendChild(style);
-                    } catch(e) {
-                        console.log('Cannot access iframe due to CORS');
-                    }
-                }
-            }, 500);
-        }
-    });
     
     // Send height to parent for iframe auto-resize (Elementor)
     function sendHeight() {

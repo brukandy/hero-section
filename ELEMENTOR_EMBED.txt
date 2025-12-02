@@ -3,6 +3,9 @@
 <!-- Vimeo Player API -->
 <script src="https://player.vimeo.com/api/player.js"></script>
 
+<!-- Typeform Embed Script -->
+<script src="//embed.typeform.com/next/embed.js"></script>
+
 <!-- Iframe Hero Section -->
 <iframe 
     src="https://brukandy.github.io/hero-section/" 
@@ -17,11 +20,28 @@
 <script>
 // Auto-resize iframe based on content
 window.addEventListener('message', function(e) {
+    // Handle iframe height resize
     if (e.data.hasOwnProperty('heroHeight')) {
         var iframe = document.querySelector('iframe[src*="hero-section"]');
         if (iframe) {
             iframe.style.height = e.data.heroHeight + 'px';
         }
+    }
+    
+    // Handle Typeform open request from iframe
+    if (e.data.type === 'openTypeform' && e.data.formId) {
+        // Detect mobile
+        var isMobile = window.innerWidth <= 768;
+        var isPortrait = window.innerHeight > window.innerWidth;
+        var tfSize = (isMobile && isPortrait) ? '100' : '50';
+        
+        // Create Typeform popup in parent window
+        var popup = window.tf.createPopup(e.data.formId, {
+            size: tfSize,
+            opacity: 100,
+            medium: 'snippet'
+        });
+        popup.open();
     }
 });
 </script>
