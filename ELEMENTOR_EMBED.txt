@@ -34,26 +34,44 @@ window.addEventListener('message', function(e) {
         // Detect mobile
         var isMobile = window.innerWidth <= 768;
         var isPortrait = window.innerHeight > window.innerWidth;
-        var tfSize = parseInt((isMobile && isPortrait) ? '100' : '50');
+        var tfSize = (isMobile && isPortrait) ? '100' : '50';
         
         console.log('Opening Typeform with size:', tfSize);
         
-        // Use Typeform API directly
-        if (window.tf && window.tf.createPopup) {
-            try {
-                var popup = window.tf.createPopup(e.data.formId, {
-                    size: tfSize,
-                    opacity: 100,
-                    medium: 'snippet'
-                });
-                popup.open();
-                console.log('Typeform opened successfully');
-            } catch (err) {
-                console.error('Error opening Typeform:', err);
-            }
-        } else {
-            console.error('Typeform library not loaded');
+        // Create container for Typeform button
+        var container = document.getElementById('tf-hero-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'tf-hero-container';
+            container.style.display = 'none';
+            document.body.appendChild(container);
         }
+        
+        // Create button with unique ID
+        var buttonId = 'tf-hero-btn-' + Date.now();
+        var button = document.createElement('button');
+        button.id = buttonId;
+        button.setAttribute('data-tf-popup', e.data.formId);
+        button.setAttribute('data-tf-size', tfSize);
+        button.setAttribute('data-tf-opacity', '100');
+        button.setAttribute('data-tf-medium', 'snippet');
+        button.textContent = 'Open';
+        container.appendChild(button);
+        
+        // Wait for Typeform to auto-initialize the button, then click
+        setTimeout(function() {
+            console.log('Clicking Typeform button');
+            var btn = document.getElementById(buttonId);
+            if (btn) {
+                btn.click();
+                // Clean up after delay
+                setTimeout(function() {
+                    if (btn && btn.parentNode) {
+                        btn.parentNode.removeChild(btn);
+                    }
+                }, 3000);
+            }
+        }, 500);
     }
 });
 </script>
