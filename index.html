@@ -61,7 +61,7 @@
 
             <!-- CTA Button -->
             <div class="cta-buttons">
-                <button data-tf-popup="mGllVklt" data-tf-opacity="100" data-tf-size="50" data-tf-iframe-props="title=Conosciamoci meglio" data-tf-transitive-search-params data-tf-medium="snippet" class="btn btn-primary">Conosciamoci meglio</button>
+                <button data-tf-popup="mGllVklt" data-tf-opacity="100" data-tf-iframe-props="title=Conosciamoci meglio" data-tf-transitive-search-params data-tf-medium="snippet" class="btn btn-primary">Conosciamoci meglio</button>
             </div>
             
             <!-- CTA Description -->
@@ -119,6 +119,8 @@
     // Adjust Typeform size based on screen size and orientation
     function adjustTypeformSize() {
         const button = document.querySelector('[data-tf-popup]');
+        if (!button) return;
+        
         const isMobile = window.innerWidth <= 768;
         const isPortrait = window.innerHeight > window.innerWidth;
         
@@ -132,7 +134,9 @@
         }
     }
     
+    // Execute immediately and on DOM ready
     adjustTypeformSize();
+    document.addEventListener('DOMContentLoaded', adjustTypeformSize);
     window.addEventListener('resize', adjustTypeformSize);
     
     // Remove Typeform padding by injecting CSS into iframe
