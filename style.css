@@ -447,43 +447,49 @@ iframe[src*="typeform.com"] {
     border-radius: 12px !important;
 }
 
-/* Typeform Mobile Portrait - Fixed Height for Elementor */
+/* Force full screen on mobile portrait */
 @media (max-width: 768px) and (orientation: portrait) {
-    /* Fixed dimensions for Elementor iframe (1350px height) */
-    [data-tf-popup] {
-        --tf-popup-width: 90% !important;
-        --tf-popup-height: 500px !important;
-    }
-    
-    /* Target Typeform iframe directly */
-    iframe[src*="typeform.com"] {
-        max-width: 90vw !important;
-        max-height: 500px !important;
-        width: 90vw !important;
-        height: 500px !important;
-        border-radius: 16px !important;
-    }
-    
     .tf-v1-popup {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
         padding: 0 !important;
-        border-radius: 16px !important;
+        margin: 0 !important;
+        transform: none !important;
+        border-radius: 0 !important;
     }
-    
+
     .tf-v1-popup-wrapper {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
         padding: 0 !important;
-        border-radius: 16px !important;
+        margin: 0 !important;
     }
-    
+
+    .tf-v1-iframe-wrapper {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    iframe[src*="typeform.com"] {
+        border-radius: 0 !important;
+    }
+
     .tf-v1-popup-close {
-        top: 12px !important;
-        right: 12px !important;
-        z-index: 99999 !important;
-        background: rgba(0, 0, 0, 0.5) !important;
-        border-radius: 50% !important;
-        width: 36px !important;
-        height: 36px !important;
+        top: 10px !important;
+        right: 10px !important;
+        z-index: 999999 !important;
     }
 }
+
 
 /* Typeform Mobile Landscape - Full Screen */
 @media (max-width: 768px) and (orientation: landscape) {
