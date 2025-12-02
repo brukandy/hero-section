@@ -123,8 +123,8 @@
         const isPortrait = window.innerHeight > window.innerWidth;
         
         if (isMobile && isPortrait) {
-            // Use fixed height for Elementor compatibility
-            button.setAttribute('data-tf-size', '40'); // Smaller for mobile portrait
+            // Full screen for better mobile UX and centering
+            button.setAttribute('data-tf-size', '100'); // Full screen on mobile portrait
         } else if (isMobile && !isPortrait) {
             button.setAttribute('data-tf-size', '100'); // Full screen on mobile landscape
         } else {
