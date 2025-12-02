@@ -39,22 +39,28 @@ window.addEventListener('message', function(e) {
         
         console.log('Opening Typeform with size:', tfSize);
         
-        // Create hidden button with Typeform attributes and click it
+        // Create hidden button with Typeform attributes
         var button = document.createElement('button');
         button.setAttribute('data-tf-popup', e.data.formId);
         button.setAttribute('data-tf-size', tfSize);
         button.setAttribute('data-tf-opacity', '100');
         button.setAttribute('data-tf-medium', 'snippet');
         button.style.display = 'none';
+        button.id = 'tf-trigger-' + Date.now();
         document.body.appendChild(button);
         
-        // Trigger click to open Typeform
-        button.click();
-        
-        // Remove button after delay
+        // Wait for Typeform to initialize, then trigger
         setTimeout(function() {
-            document.body.removeChild(button);
-        }, 1000);
+            console.log('Clicking button to open Typeform');
+            button.click();
+            
+            // Remove button after another delay
+            setTimeout(function() {
+                if (button.parentNode) {
+                    document.body.removeChild(button);
+                }
+            }, 2000);
+        }, 100);
     }
 });
 </script>
